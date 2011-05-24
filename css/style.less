@@ -1,9 +1,3 @@
-/* CSS for the overall demo */
-
-@page-bg-color: #ccc;
-
-/* Functions */
-
 .rounded-corners (@radius: 2em) {
     border-radius: @radius;
     -moz-border-radius: @radius;
@@ -16,23 +10,44 @@
     background: linear-gradient(@start, @stop);
 }
 
-.box-shadow (@x: 0, @y: 0, @blur: 0, @color: #000 ) {
+.box-shadow (@x: 0, @y: 0, @blur: 0, @color: #000) {
     box-shadow: @arguments;
     -moz-box-shadow: @arguments;
     -webkit-box-shadow: @arguments;
 }
-.dark-bg-text(@base-color) {
-    color: lighten(@base-color, 70%);
-    text-shadow: 0 -1px 0 darken(@base-color, 60%), 
-                 0 1px 0 lighten(@base-color, 15%);
-}
-.light-bg-text(@base-color) {
-    color: darken(@base-color, 80%);
-    text-shadow: 0 -1px 0 darken(@base-color, 15%),
-                 0 1px 0 lighten(@base-color, 60%);
+
+.text-color(dark, @base-color) {
+    color: lighten(@base-color, 80%);
+    text-shadow: 0 -1px 0 darken(@base-color, 50%);
 }
 
-/* Inset-button mixin */
+.text-color(light, @base-color){
+    color: darken(@base-color, 80%);
+    text-shadow: 0 1px 0 lighten(@base-color, 15%);
+}
+.button-colors(dark, @base-color) {
+    .text-color(dark, @base-color);
+    border: 1px solid darken(@base-color, 20%);
+        
+    .top-bottom-gradient(lighten(@base-color, 7%), lighten(@base-color, 3%));
+    .box-shadow(0, 1px, 0, lighten(@base-color, 10%));
+    
+    &:after  { border-top: 1px solid lighten(@base-color, 15%); }
+    &:hover  { .top-bottom-gradient(lighten(@base-color, 10%), lighten(@base-color, 5%)); }
+    &:active { .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 10%)); }
+}
+
+.button-colors(light, @base-color) {
+    .text-color(light, @base-color);
+    border: 1px solid darken(@base-color, 20%);
+        
+    .top-bottom-gradient(darken(@base-color, 1%), darken(@base-color, 5%));
+    .box-shadow(0, 1px, 0, lighten(@base-color, 15%));
+    
+    &:after  { border-top: 1px solid lighten(@base-color, 15%); }
+    &:hover  { .top-bottom-gradient(darken(@base-color, 3%), darken(@base-color, 8%)); }
+    &:active { .top-bottom-gradient(darken(@base-color, 8%), lighten(@base-color, 3%)); }
+}
 
 .inset-button (@base-color: #666, @border-radius: 2em) {
     display: inline-block;
@@ -52,37 +67,23 @@
         
         .rounded-corners(@border-radius);
     }
-    /* Styles for dark backgrounds */
-    &.dark {
-        color: lighten(@base-color, 80%);
-        border: 1px solid darken(@base-color, 20%);
-        text-shadow: 0 -1px 0 darken(@base-color, 50%);
-        
-        .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 1%));
-        .box-shadow(0, 1px, 0, lighten(@base-color, 10%));
-        
-        &:after  { border-top: 1px solid lighten(@base-color, 15%); }
-        &:hover  { .top-bottom-gradient(lighten(@base-color, 10%), lighten(@base-color, 5%)); }
-        &:active { .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 10%)); }
-    }
     
-    /* Styles for light backgrounds */
-    &.light {
-        color: darken(@base-color, 80%);
-        border: 1px solid darken(@base-color, 20%);
-        text-shadow: 0 1px 0 lighten(@base-color, 20%);
-        
-        .top-bottom-gradient(darken(@base-color, 1%), darken(@base-color, 5%));
-        .box-shadow(0, 1px, 0, lighten(@base-color, 15%));
-        
-        &:after  { border-top: 1px solid lighten(@base-color, 15%); }
-        &:hover  { .top-bottom-gradient(darken(@base-color, 3%), darken(@base-color, 8%)); }
-        &:active { .top-bottom-gradient(darken(@base-color, 8%), lighten(@base-color, 3%)); }
-    }
+    @theLight: lightness(@base-color);
+    @perceived-luminance: ~`parseInt('@{theLight}') > 65 ? 'light' : 'dark'`;
+    .button-colors(@perceived-luminance, @base-color);
 }
 
 
 /* Element styles */
+
+@page-bg-color: #666;
+@page-lightness: lightness(@page-bg-color);
+@page-perc-lum: ~`parseInt('@{page-lightness}') > 70 ? 'light' : 'dark'`;
+
+@green: #608D0C;
+@blue: #069;
+@tan: lighten(#D2B48C, 10%);
+@gray: #ddd;
 
 body {
     background: @page-bg-color;
@@ -90,9 +91,8 @@ body {
     font-size: 12px;
     text-align: center;
     
-    .dark-bg-text(@page-bg-color);
+    .text-color(@page-perc-lum, @page-bg-color);
 }
-body.light { .light-bg-text(@page-bg-color); }
 
 div {
     box-sizing: border-box;
@@ -106,7 +106,22 @@ div {
     float: left;
 }
 
+.demo-div > div {
+    border: 1px solid #333;
+    .box-shadow(0,2px,5px, #444);
+}
+
 h1 { margin: 2em; }
 h1, h2 { font-family: "Lucida Grande", sans-serif; }
 
-#less-css a.inset { .inset-button(@page-bg-color); }
+#green > div { background: @green; padding: 5em; }
+#green.demo-div a.inset { .inset-button(@green); }
+
+#blue > div { background: @blue; padding: 5em; }
+#blue.demo-div a.inset { .inset-button(@blue); }
+
+#orange > div { background: @tan; padding: 5em; }
+#orange.demo-div a.inset { .inset-button(@tan); }
+
+#gray > div { background: @gray; padding: 5em; }
+#gray.demo-div a.inset { .inset-button(@gray); }
