@@ -1,6 +1,6 @@
 /* CSS for the overall demo */
 
-@base-color: #069;
+@page-bg-color: #069;
 
 /* Functions */
 
@@ -22,31 +22,9 @@
     -webkit-box-shadow: @arguments;
 }
 
-/* Element styles */
+/* Inset-button mixin */
 
-body {
-    background: @base-color;
-    font-family: sans-serif;
-    font-size: 12px;
-    text-align: center;
-}
-
-div {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-
-.demo-div {
-    width: 40%;
-    margin: 5%;
-    float: left;
-    padding: 10em;
-}
-
-/* Simple pill-style button */
-
-#less-css a.inset-button {
+.inset-button (@base-color: #666) {
     display: inline-block;
     padding: 1em 2em;
     position: relative;
@@ -64,33 +42,61 @@ div {
         
         .rounded-corners;
     }
+    
+    /* Styles for dark backgrounds */
+    &.dark {
+        color: lighten(@base-color, 80%);
+        border: 1px solid darken(@base-color, 20%);
+        text-shadow: 0 -1px 0 darken(@base-color, 50%);
+        
+        .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 1%));
+        .box-shadow(0, 1px, 0, lighten(@base-color, 10%));
+        
+        &:after  { border-top: 1px solid lighten(@base-color, 15%); }
+        &:hover  { .top-bottom-gradient(lighten(@base-color, 10%), lighten(@base-color, 5%)); }
+        &:active { .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 10%)); }
+    }
+    
+    /* Styles for light backgrounds */
+    &.light {
+        color: darken(@base-color, 80%);
+        border: 1px solid darken(@base-color, 20%);
+        text-shadow: 0 1px 0 lighten(@base-color, 20%);
+        
+        .top-bottom-gradient(darken(@base-color, 1%), darken(@base-color, 5%));
+        .box-shadow(0, 1px, 0, lighten(@base-color, 15%));
+        
+        &:after  { border-top: 1px solid lighten(@base-color, 15%); }
+        &:hover  { .top-bottom-gradient(darken(@base-color, 3%), darken(@base-color, 8%)); }
+        &:active { .top-bottom-gradient(darken(@base-color, 8%), lighten(@base-color, 3%)); }
+    }
 }
 
-/* Styles for dark backgrounds */
-#less-css a.inset-button.dark {
-    color: lighten(@base-color, 80%);
-    border: 1px solid darken(@base-color, 20%);
-    text-shadow: 0 -1px 0 darken(@base-color, 50%);
-    
-    .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 1%));
-    .box-shadow(0, 1px, 0, lighten(@base-color, 10%));
-    
-    &:after  { border-top: 1px solid lighten(@base-color, 15%); }
-    &:hover  { .top-bottom-gradient(lighten(@base-color, 10%), lighten(@base-color, 5%)); }
-    &:active { .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 10%)); }
+
+/* Element styles */
+
+body {
+    background: @page-bg-color;
+    font-family: sans-serif;
+    font-size: 12px;
+    text-align: center;
 }
 
-/* Styles for light backgrounds */
-
-#less-css a.inset-button.light {
-    color: darken(@base-color, 80%);
-    border: 1px solid darken(@base-color, 20%);
-    text-shadow: 0 1px 0 lighten(@base-color, 20%);
-    
-    .top-bottom-gradient(darken(@base-color, 1%), darken(@base-color, 5%));
-    .box-shadow(0, 1px, 0, lighten(@base-color, 20%));
-    
-    &:after  { border-top: 1px solid lighten(@base-color, 20%); }
-    &:hover  { .top-bottom-gradient(darken(@base-color, 3%), darken(@base-color, 8%)); }
-    &:active { .top-bottom-gradient(darken(@base-color, 8%), lighten(@base-color, 3%)); }
+div {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
+
+.demo-div {
+    width: 40%;
+    margin: 5%;
+    float: left;
+}
+
+h1 { margin: 2em; }
+h1, h2 { font-family: "Lucida Grande", sans-serif; }
+h1.dark, h2.dark { color: lighten(@page-bg-color, 80%); text-shadow: 0 -1px 0 darken(@page-bg-color, 60%);}
+h1.light, h2.light { color: darken(@page-bg-color, 80%); text-shadow: 0 1px 0 lighten(@page-bg-color, 60%);}
+
+#less-css a.inset { .inset-button(@page-bg-color); }
