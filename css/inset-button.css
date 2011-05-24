@@ -1,12 +1,5 @@
-body {
-    background: #069;
-    font-family: sans-serif;
-    font-size: 12px;
-    padding: 10em;
-    text-align: center;
-}
 /* Create a very simple pill-style button */
-a.inset-button {
+#pure-css a.inset-button {
     position: relative;
     padding: 1em 2em;
     text-decoration: none;
@@ -17,7 +10,7 @@ a.inset-button {
     border-radius: 2em;
 }
 /* Create the pseudo element that we'll use for the top-border highlight */
-a.inset-button:after {
+#pure-css a.inset-button:after {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -30,7 +23,7 @@ a.inset-button:after {
     border-radius: 2em;
 }
 /* Styles for dark backgrounds */
-a.inset-button.dark {
+#pure-css a.inset-button.dark {
     color: rgba(255,255,255, .8);
     border: 1px solid rgba(0,0,0, .3);
     background: -webkit-gradient(linear, left top, left bottom, 
@@ -46,10 +39,10 @@ a.inset-button.dark {
     -moz-box-shadow: 0 1px 0 rgba(255,255,255, .1);
     box-shadow: 0 1px 0 rgba(255,255,255, .1);
 }
-a.inset-button.dark:after {
+#pure-css a.inset-button.dark:after {
     border-top: 1px solid rgba(255,255,255, .15);
 }
-a.inset-button.dark:hover {
+#pure-css a.inset-button.dark:hover {
     background: -webkit-gradient(linear, left top, left bottom, 
         color-stop(0, rgba(255,255,255, .21)), 
         color-stop(1, rgba(255,255,255, .14)));
@@ -57,7 +50,7 @@ a.inset-button.dark:hover {
         rgba(255,255,255, .21), 
         rgba(255,255,255, .14));
 }
-a.inset-button.dark:active {
+#pure-css a.inset-button.dark:active {
     background: -webkit-gradient(linear, left top, left bottom, 
         color-stop(0, rgba(255,255,255, .14)), 
         color-stop(1, rgba(255,255,255, .25)));
@@ -66,7 +59,7 @@ a.inset-button.dark:active {
         rgba(255,255,255, .21));
 }
 /* Button styles for light backgrounds */
-a.inset-button.light {
+#pure-css a.inset-button.light {
     color: rgba(0,0,0, .8);
     border: 1px solid rgba(0,0,0, .2);
     background: -webkit-gradient(linear, left top, left bottom, 
@@ -82,10 +75,10 @@ a.inset-button.light {
     -moz-box-shadow: 0 1px 0 rgba(255,255,255, .7);
     box-shadow: 0 1px 0 rgba(255,255,255, .7);
 }
-a.inset-button.light:after {
+#pure-css a.inset-button.light:after {
     border-top: 1px solid rgba(255,255,255, .6);
 }
-a.inset-button.light:hover {
+#pure-css a.inset-button.light:hover {
     background: -webkit-gradient(linear, left top, left bottom, 
         color-stop(0, rgba(0,0,0, .01)), 
         color-stop(1, rgba(0,0,0, .06)));
@@ -93,7 +86,7 @@ a.inset-button.light:hover {
         rgba(0,0,0, .01), 
         rgba(0,0,0, .06));
 }
-a.inset-button.light:active {
+#pure-css a.inset-button.light:active {
     background: -webkit-gradient(linear, left top, left bottom, 
         color-stop(0, rgba(0,0,0, .06)), 
         color-stop(1, rgba(0,0,0, .01)));

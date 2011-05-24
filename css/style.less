@@ -1,6 +1,6 @@
-/* Global Declarations */
+/* CSS for the overall demo */
 
-@base-color: #666;
+@base-color: #069;
 
 /* Functions */
 
@@ -28,11 +28,25 @@ body {
     background: @base-color;
     font-family: sans-serif;
     font-size: 12px;
-    padding: 10em;
     text-align: center;
 }
 
-a.inset-button {
+div {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.demo-div {
+    width: 40%;
+    margin: 5%;
+    float: left;
+    padding: 10em;
+}
+
+/* Simple pill-style button */
+
+#less-css a.inset-button {
     display: inline-block;
     padding: 1em 2em;
     position: relative;
@@ -52,7 +66,8 @@ a.inset-button {
     }
 }
 
-a.inset-button.dark {
+/* Styles for dark backgrounds */
+#less-css a.inset-button.dark {
     color: lighten(@base-color, 80%);
     border: 1px solid darken(@base-color, 20%);
     text-shadow: 0 -1px 0 darken(@base-color, 50%);
@@ -65,7 +80,9 @@ a.inset-button.dark {
     &:active { .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 10%)); }
 }
 
-a.inset-button.light {
+/* Styles for light backgrounds */
+
+#less-css a.inset-button.light {
     color: darken(@base-color, 80%);
     border: 1px solid darken(@base-color, 20%);
     text-shadow: 0 1px 0 lighten(@base-color, 20%);
