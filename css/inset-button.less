@@ -1,21 +1,43 @@
+/* Adaptive inset button mixin
+   Uses a base (background) color to create an inset-looking pill button.
+   
+   Copyright Jason Rosoff 2011 - http://shipordie.com
+*/
+
 #adaptive-inset-button {
+    
+    @css-pie: "/css/PIE/PIE.htc";
+    
+    /* Basic Functions */
     .rounded-corners (@radius: 2em) {
-        border-radius: @radius;
         -moz-border-radius: @radius;
         -webkit-border-radius: @radius;
+        box-shadow: @arguments;
+        
+        behavior: ~"url(@{css-pie})";
+        
     }
     
     .top-bottom-gradient (@start, @stop) {
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(1, @stop));
         background: -moz-linear-gradient(top, @start, @stop);
         background: linear-gradient(@start, @stop);
+
+        behavior: ~"url(@{css-pie})";
+        
     }
     
     .box-shadow (@x: 0, @y: 0, @blur: 0, @color: #000) {
-        box-shadow: @arguments;
         -moz-box-shadow: @arguments;
         -webkit-box-shadow: @arguments;
+        box-shadow: @arguments;
+        
+        behavior: ~"url(@{css-pie})";
+        
     }
+    
+    /* Button Styles */
+    
     .button-colors(dark, @base-color) {
         color: lighten(@base-color, 60%);
         text-shadow: 0 -1px 0 darken(@base-color, 50%);
@@ -32,7 +54,7 @@
     .button-colors(light, @base-color) {
         color: darken(@base-color, 60%);
         text-shadow: 0 1px 0 lighten(@base-color, 15%);
-        border: 1px solid darken(@base-color, 20%);
+        border: 1px solid darken(@base-color, 40%);
             
         .top-bottom-gradient(darken(@base-color, 1%), darken(@base-color, 5%));
         .box-shadow(0, 1px, 0, lighten(@base-color, 15%));
@@ -61,6 +83,10 @@
             .rounded-corners(@border-radius);
         }
         
+        // Calculate the lightness of the background color and use that to sest the rest
+        // of the button colors. Perceived luminances is a bit of a fudge because it doesn't 
+        // properly weight the differences in how humans see RGB light, but it's close.
+           
         @theLight: lightness(@base-color);
         @perceived-luminance: ~`parseInt('@{theLight}') > 65 ? 'light' : 'dark'`;
         .button-colors(@perceived-luminance, @base-color);
