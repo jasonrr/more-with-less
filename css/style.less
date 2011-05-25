@@ -1,84 +1,4 @@
-.rounded-corners (@radius: 2em) {
-    border-radius: @radius;
-    -moz-border-radius: @radius;
-    -webkit-border-radius: @radius;
-}
-
-.top-bottom-gradient (@start, @stop) {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(1, @stop));
-    background: -moz-linear-gradient(top, @start, @stop);
-    background: linear-gradient(@start, @stop);
-}
-
-.box-shadow (@x: 0, @y: 0, @blur: 0, @color: #000) {
-    box-shadow: @arguments;
-    -moz-box-shadow: @arguments;
-    -webkit-box-shadow: @arguments;
-}
-
-.text-color(dark, @base-color) {
-    color: lighten(@base-color, 80%);
-    text-shadow: 0 -1px 0 darken(@base-color, 50%);
-}
-
-.text-color(light, @base-color){
-    color: darken(@base-color, 80%);
-    text-shadow: 0 1px 0 lighten(@base-color, 15%);
-}
-.button-colors(dark, @base-color) {
-    .text-color(dark, @base-color);
-    border: 1px solid darken(@base-color, 20%);
-        
-    .top-bottom-gradient(lighten(@base-color, 7%), lighten(@base-color, 3%));
-    .box-shadow(0, 1px, 0, lighten(@base-color, 10%));
-    
-    &:after  { border-top: 1px solid lighten(@base-color, 15%); }
-    &:hover  { .top-bottom-gradient(lighten(@base-color, 10%), lighten(@base-color, 5%)); }
-    &:active { .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 10%)); }
-}
-
-.button-colors(light, @base-color) {
-    .text-color(light, @base-color);
-    border: 1px solid darken(@base-color, 20%);
-        
-    .top-bottom-gradient(darken(@base-color, 1%), darken(@base-color, 5%));
-    .box-shadow(0, 1px, 0, lighten(@base-color, 15%));
-    
-    &:after  { border-top: 1px solid lighten(@base-color, 15%); }
-    &:hover  { .top-bottom-gradient(darken(@base-color, 3%), darken(@base-color, 8%)); }
-    &:active { .top-bottom-gradient(darken(@base-color, 8%), lighten(@base-color, 3%)); }
-}
-
-.inset-button (@base-color: #666, @border-radius: 2em) {
-    display: inline-block;
-    padding: .5 * @border-radius @border-radius;
-    position: relative;
-    text-decoration: none;
-    
-    .rounded-corners(@border-radius);
-    
-    &:after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        content: " ";
-        
-        .rounded-corners(@border-radius);
-    }
-    
-    @theLight: lightness(@base-color);
-    @perceived-luminance: ~`parseInt('@{theLight}') > 65 ? 'light' : 'dark'`;
-    .button-colors(@perceived-luminance, @base-color);
-}
-
-
-/* Element styles */
-
-@page-bg-color: #666;
-@page-lightness: lightness(@page-bg-color);
-@page-perc-lum: ~`parseInt('@{page-lightness}') > 70 ? 'light' : 'dark'`;
+@import "inset-button";
 
 @green: #608D0C;
 @blue: #069;
@@ -86,12 +6,13 @@
 @gray: #ddd;
 
 body {
-    background: @page-bg-color;
+    background: #666;
     font-family: sans-serif;
     font-size: 12px;
     text-align: center;
     
-    .text-color(@page-perc-lum, @page-bg-color);
+    color: #fff;
+    text-shadow: 0 -1px 0 #333;
 }
 
 div {
@@ -102,26 +23,26 @@ div {
 
 .demo-div {
     width: 40%;
-    margin: 5%;
+    margin: 2% 5%;
     float: left;
 }
 
 .demo-div > div {
     border: 1px solid #333;
-    .box-shadow(0,2px,5px, #444);
+    #adaptive-inset-button > .box-shadow(0,2px,5px, #444);
 }
 
-h1 { margin: 2em; }
+h1 { margin: 2em 0 1em; }
 h1, h2 { font-family: "Lucida Grande", sans-serif; }
 
 #green > div { background: @green; padding: 5em; }
-#green.demo-div a.inset { .inset-button(@green); }
+#green.demo-div a.inset { #adaptive-inset-button > .inset-button(@green); }
 
 #blue > div { background: @blue; padding: 5em; }
-#blue.demo-div a.inset { .inset-button(@blue); }
+#blue.demo-div a.inset { #adaptive-inset-button > .inset-button(@blue); }
 
-#orange > div { background: @tan; padding: 5em; }
-#orange.demo-div a.inset { .inset-button(@tan); }
+#tan > div { background: @tan; padding: 5em; }
+#tan.demo-div a.inset { #adaptive-inset-button > .inset-button(@tan); }
 
 #gray > div { background: @gray; padding: 5em; }
-#gray.demo-div a.inset { .inset-button(@gray); }
+#gray.demo-div a.inset { #adaptive-inset-button > .inset-button(@gray); }
