@@ -1,0 +1,21 @@
+LESS Button Experiments
+=========================
+
+A fancy LESS mixin that generates an inset looking button based on a base (background) color. 
+
+[Check out a live demo](http://jasonrr.github.com/button-experiments/).
+
+Usage
+=======
+
+Requires [LESS 1.1.1 or later](https://github.com/cloudhead/less.js), so make sure you have that installed first!
+
+1. Import inset-button.less into your own LESS file
+
+   @import "css/inset-button"
+
+2. Call the inset-button mixin on an inline or block-level element, and pass in the base (background) color
+
+   a.this-is-a-button { #adaptive-inset-button > .inset-button(#666);
+
+That's it! The mixin does the rest for you. It even figures out if the background color is dark or light and adjusts accordingly.
