@@ -1,0 +1,48 @@
+@import "inset-button";
+
+@green: #608D0C;
+@blue: #069;
+@tan: lighten(#D2B48C, 10%);
+@gray: #ddd;
+
+body {
+    background: #666;
+    font-family: sans-serif;
+    font-size: 12px;
+    text-align: center;
+    
+    color: #fff;
+    text-shadow: 0 -1px 0 #333;
+}
+
+div {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.demo-div {
+    width: 40%;
+    margin: 2% 5%;
+    float: left;
+}
+
+.demo-div > div {
+    border: 1px solid #333;
+    #adaptive-inset-button > .box-shadow(0,2px,5px, #444);
+}
+
+h1 { margin: 2em 0 1em; }
+h1, h2 { font-family: "Lucida Grande", sans-serif; }
+
+#green > div { background: @green; padding: 5em; }
+#green.demo-div a.inset { #adaptive-inset-button > .inset-button(@green); }
+
+#blue > div { background: @blue; padding: 5em; }
+#blue.demo-div a.inset { #adaptive-inset-button > .inset-button(@blue); }
+
+#tan > div { background: @tan; padding: 5em; }
+#tan.demo-div a.inset { #adaptive-inset-button > .inset-button(@tan); }
+
+#gray > div { background: @gray; padding: 5em; }
+#gray.demo-div a.inset { #adaptive-inset-button > .inset-button(@gray); }
