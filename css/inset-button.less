@@ -8,35 +8,27 @@
     
     @css-pie: "/css/PIE/PIE.htc";
     
-    /* Basic Functions */
+    // Basic Functions
+    
     .rounded-corners (@radius: 2em) {
         -moz-border-radius: @radius;
         -webkit-border-radius: @radius;
-        box-shadow: @arguments;
-        
-        behavior: ~"url(@{css-pie})";
-        
+        border-radius: @radius;
     }
     
     .top-bottom-gradient (@start, @stop) {
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(1, @stop));
         background: -moz-linear-gradient(top, @start, @stop);
-        background: linear-gradient(@start, @stop);
-
-        behavior: ~"url(@{css-pie})";
-        
+        background: linear-gradient(top, @start, @stop);
     }
     
     .box-shadow (@x: 0, @y: 0, @blur: 0, @color: #000) {
         -moz-box-shadow: @arguments;
         -webkit-box-shadow: @arguments;
         box-shadow: @arguments;
-        
-        behavior: ~"url(@{css-pie})";
-        
     }
     
-    /* Button Styles */
+    // Button Styles
     
     .button-colors(dark, @base-color) {
         color: lighten(@base-color, 60%);
@@ -47,8 +39,8 @@
         .box-shadow(0, 1px, 0, lighten(@base-color, 10%));
         
         &:after  { border-top: 1px solid lighten(@base-color, 15%); }
-        &:hover  { .top-bottom-gradient(lighten(@base-color, 10%), lighten(@base-color, 5%)); }
-        &:active { .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 10%)); }
+        &:hover  { .top-bottom-gradient(lighten(@base-color, 10%), lighten(@base-color, 5%)); behavior: ~"url(@{css-pie})"; }
+        &:active { .top-bottom-gradient(lighten(@base-color, 5%), lighten(@base-color, 10%)); behavior: ~"url(@{css-pie})"; }
     }
     
     .button-colors(light, @base-color) {
@@ -60,8 +52,8 @@
         .box-shadow(0, 1px, 0, lighten(@base-color, 15%));
         
         &:after  { border-top: 1px solid lighten(@base-color, 15%); }
-        &:hover  { .top-bottom-gradient(darken(@base-color, 3%), darken(@base-color, 8%)); }
-        &:active { .top-bottom-gradient(darken(@base-color, 8%), lighten(@base-color, 3%)); }
+        &:hover  { .top-bottom-gradient(darken(@base-color, 3%), darken(@base-color, 8%)); behavior: ~"url(@{css-pie})"; }
+        &:active { .top-bottom-gradient(darken(@base-color, 8%), lighten(@base-color, 3%)); behavior: ~"url(@{css-pie})"; }
     }
     
     .inset-button (@base-color: #666, @border-radius: 2em) {
@@ -81,6 +73,7 @@
             content: " ";
             
             .rounded-corners(@border-radius);
+            behavior: ~"url(@{css-pie})";
         }
         
         // Calculate the lightness of the background color and use that to sest the rest
@@ -90,5 +83,6 @@
         @theLight: lightness(@base-color);
         @perceived-luminance: ~`parseInt('@{theLight}') > 65 ? 'light' : 'dark'`;
         .button-colors(@perceived-luminance, @base-color);
+        behavior: ~"url(@{css-pie})";
     }
 }
