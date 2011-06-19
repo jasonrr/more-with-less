@@ -1,4 +1,4 @@
-@import "inset-button";
+@import "more-with-less";
 
 @green: #608D0C;
 @blue: #069;
@@ -29,20 +29,20 @@ div {
 
 .demo-div > div {
     border: 1px solid #333;
-    #adaptive-inset-button > .box-shadow(0,2px,5px, #444);
+    #mwl > .box-shadow(0,2px,5px, #444);
 }
 
 h1 { margin: 2em 0 1em; }
 h1, h2 { font-family: "Lucida Grande", sans-serif; }
 
 #green > div { background: @green; padding: 5em; }
-#green.demo-div a.inset { #adaptive-inset-button > .inset-button(@green); }
+#green.demo-div .inset { #mwl > #buttons > .inset-button(@green); }
 
 #blue > div { background: @blue; padding: 5em; }
-#blue.demo-div a.inset { #adaptive-inset-button > .inset-button(@blue); }
+#blue.demo-div .inset { #mwl > #buttons > .inset-button(@blue); }
 
 #tan > div { background: @tan; padding: 5em; }
-#tan.demo-div a.inset { #adaptive-inset-button > .inset-button(@tan); }
+#tan.demo-div .inset { #mwl > #buttons > .inset-button(@tan); }
 
 #gray > div { background: @gray; padding: 5em; }
-#gray.demo-div a.inset { #adaptive-inset-button > .inset-button(@gray); }
+#gray.demo-div .inset { #mwl > #buttons > .inset-button(@gray); }
