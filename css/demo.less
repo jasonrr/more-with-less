@@ -5,6 +5,20 @@
 @tan: lighten(#D2B48C, 10%);
 @gray: #ddd;
 
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+.clearfix { display: inline-table; }
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
+
 body {
     background: #666;
     font-family: sans-serif;
@@ -21,6 +35,7 @@ div {
     -webkit-box-sizing: border-box;
 }
 
+body > div { margin-bottom: 5em; }
 .demo-div {
     width: 40%;
     margin: 2% 5%;
@@ -37,12 +52,16 @@ h1, h2 { font-family: "Lucida Grande", sans-serif; }
 
 #green > div { background: @green; padding: 5em; }
 #green.demo-div .inset { #mwl > #buttons > .inset-button(@green); }
+#green.demo-div .raised { #mwl > #buttons > .raised-button(@green, 10px, 10px, 20px); }
 
 #blue > div { background: @blue; padding: 5em; }
 #blue.demo-div .inset { #mwl > #buttons > .inset-button(@blue); }
+#blue.demo-div .raised { #mwl > #buttons > .raised-button(@blue, 10px, 10px, 20px); }
 
 #tan > div { background: @tan; padding: 5em; }
 #tan.demo-div .inset { #mwl > #buttons > .inset-button(@tan); }
+#tan.demo-div .raised { #mwl > #buttons > .raised-button(@tan, 10px, 10px, 20px); }
 
 #gray > div { background: @gray; padding: 5em; }
 #gray.demo-div .inset { #mwl > #buttons > .inset-button(@gray); }
+#gray.demo-div .raised { #mwl > #buttons > .raised-button(@gray, 10px, 10px, 20px); }
