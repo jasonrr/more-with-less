@@ -6,9 +6,9 @@ More with LESS is a little LESS library that makes some complicated stuff pretty
 Usage
 =======
 
-Requires [LESS 1.1.1 or later](https://github.com/cloudhead/less.js), so make sure you have that installed first!
+*Requires [LESS 1.1.1 or later](https://github.com/cloudhead/less.js)*, so make sure you have that installed first!
 
-1. Import more-with-less.less into your own LESS file and call any of the mixins in the #mwl namespace. For example, to create an inset button (can be created on any inline or block element), you would write:
+Import more-with-less.less into your own LESS file and call any of the mixins in the #mwl namespace. For example, to create an inset button (can be created on any inline or block element), you would write:
 
     @import "css/more-with-less"
     a.this-is-a-button { #mwl > #buttons > .inset-button(#666) };
