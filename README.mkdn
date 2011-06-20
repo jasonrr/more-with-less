@@ -1,21 +1,22 @@
-LESS Button Experiments
+More with LESS
 =========================
 
-A fancy LESS mixin that generates an inset looking button based on a base (background) color. 
-
-[Check out a live demo](http://jasonrr.github.com/button-experiments/).
+More with LESS is a little LESS library that makes some complicated stuff pretty easy while providing cross-browser compatibility. Check out [the live demo](http://jasonrr.github.com/more-with-less/).
 
 Usage
 =======
 
 Requires [LESS 1.1.1 or later](https://github.com/cloudhead/less.js), so make sure you have that installed first!
 
-1. Import inset-button.less into your own LESS file
+1. Import more-with-less.less into your own LESS file and call any of the mixins in the #mwl namespace. For example, to create an inset button (can be created on any inline or block element), you would write:
 
-    @import "css/inset-button"
+    @import "css/more-with-less"
+    a.this-is-a-button { #mwl > #buttons > .inset-button(#666) };
 
-2. Call the inset-button mixin on an inline or block-level element, and pass in the base (background) color
+And apply it in HTML like this:
 
-    a.this-is-a-button { #adaptive-inset-button > .inset-button(#666);
+    <a class="this-is-a-button" href="#">This is a button</a>
+    
 
-That's it! The mixin does the rest for you. It even figures out if the background color is dark or light and adjusts accordingly.
+That's it! The mixins handle everything from the basic, e.g. cross-browser border-radius, to the complex like determining if the base button color is dark or light and adjusting the other colors accordingly.
+
