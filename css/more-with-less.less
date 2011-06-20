@@ -52,6 +52,7 @@
             color: darken(@base-color, 60%);
             text-shadow: 0 1px 0 lighten(@base-color, 15%);
             border: 1px solid darken(@base-color, 40%);
+            border-bottom-color: darken(@base-color, 55%);
                 
             .top-bottom-gradient(darken(@base-color, 1%), darken(@base-color, 5%));
             .button-shadow(@type, lighten(@base-color, 15%));
@@ -64,7 +65,7 @@
         // Create a button that appears to be inset into the background. Using all defaults will create a pill-shaped button. 
         // Adjusting border-radius, and padding will give you any shape you like.
         
-        .inset-button (@base-color: #666, @border-radius: 2em, @top-btm-padding: 1em, @left-rt-padding: 2em) {
+        .base_button (@base-color: #666, @border-radius: 2em, @top-btm-padding: 1em, @left-rt-padding: 2em, @type) {
             cursor: pointer;
             display: inline-block;
             padding: @top-btm-padding @left-rt-padding;
@@ -91,40 +92,16 @@
                
             @theLight: lightness(@base-color);
             @perceived-luminance: ~`parseInt('@{theLight}') > 65 ? 'light' : 'dark'`;
-            @type: ~`'inset'`;
             .button-colors(@perceived-luminance, @base-color, @type);
             behavior: ~"url(@{css-pie})";
         }
         .raised-button (@base-color: #666, @border-radius: 2em, @top-btm-padding: 1em, @left-rt-padding: 2em) {
-            cursor: pointer;
-            display: inline-block;
-            padding: @top-btm-padding @left-rt-padding;
-            position: relative;
-            text-decoration: none;
-            
-            .rounded-corners(@border-radius);
-            
-            &:after {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                content: " ";
-                
-                .rounded-corners(@border-radius);
-                behavior: ~"url(@{css-pie})";
-            }
-            
-            // Calculate the lightness of the background color and use that to sest the rest
-            // of the button colors. Perceived luminances is a bit of a fudge because it doesn't 
-            // properly weight the differences in how humans see RGB light, but it's close.
-               
-            @theLight: lightness(@base-color);
             @type: ~`'raised'`;
-            @perceived-luminance: ~`parseInt('@{theLight}') > 65 ? 'light' : 'dark'`;
-            .button-colors(@perceived-luminance, @base-color, @type);
-            behavior: ~"url(@{css-pie})";
+            .base_button(@base-color, @border-radius, @top-btm-padding, @left-rt-padding, @type);
+        }
+        .inset-button (@base-color: #666, @border-radius: 2em, @top-btm-padding: 1em, @left-rt-padding: 2em) {
+            @type: ~`'inset'`;
+            .base_button(@base-color, @border-radius, @top-btm-padding, @left-rt-padding, @type);
         }
     }
 }
