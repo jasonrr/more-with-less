@@ -1,9 +1,23 @@
-@import "inset-button";
+@import "more-with-less";
 
 @green: #608D0C;
 @blue: #069;
 @tan: lighten(#D2B48C, 10%);
 @gray: #ddd;
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+.clearfix { display: inline-table; }
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
 
 body {
     background: #666;
@@ -21,6 +35,7 @@ div {
     -webkit-box-sizing: border-box;
 }
 
+body > div { margin-bottom: 5em; }
 .demo-div {
     width: 40%;
     margin: 2% 5%;
@@ -29,20 +44,24 @@ div {
 
 .demo-div > div {
     border: 1px solid #333;
-    #adaptive-inset-button > .box-shadow(0,2px,5px, #444);
+    #mwl > .box-shadow(0,2px,5px, #444);
 }
 
 h1 { margin: 2em 0 1em; }
 h1, h2 { font-family: "Lucida Grande", sans-serif; }
 
 #green > div { background: @green; padding: 5em; }
-#green.demo-div a.inset { #adaptive-inset-button > .inset-button(@green); }
+#green.demo-div .inset { #mwl > #buttons > .inset-button(@green); }
+#green.demo-div .raised { #mwl > #buttons > .raised-button(@green, 10px, 10px, 20px); }
 
 #blue > div { background: @blue; padding: 5em; }
-#blue.demo-div a.inset { #adaptive-inset-button > .inset-button(@blue); }
+#blue.demo-div .inset { #mwl > #buttons > .inset-button(@blue); }
+#blue.demo-div .raised { #mwl > #buttons > .raised-button(@blue, 10px, 10px, 20px); }
 
 #tan > div { background: @tan; padding: 5em; }
-#tan.demo-div a.inset { #adaptive-inset-button > .inset-button(@tan); }
+#tan.demo-div .inset { #mwl > #buttons > .inset-button(@tan); }
+#tan.demo-div .raised { #mwl > #buttons > .raised-button(@tan, 10px, 10px, 20px); }
 
 #gray > div { background: @gray; padding: 5em; }
-#gray.demo-div a.inset { #adaptive-inset-button > .inset-button(@gray); }
+#gray.demo-div .inset { #mwl > #buttons > .inset-button(@gray); }
+#gray.demo-div .raised { #mwl > #buttons > .raised-button(@gray, 10px, 10px, 20px); }
